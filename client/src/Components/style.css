@@ -1,0 +1,373 @@
+@import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400&display=swap");
+
+form {
+  /* This bit sets up the horizontal layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* This bit draws the box around it */
+  border: 1px solid grey;
+
+  /* I've used padding so you can see the edges of the elements. */
+  padding: 10px;
+}
+
+form > input {
+  /* Tell the input to use all the available space */
+  flex-grow: 2;
+
+  border: none;
+  padding: 0 7px;
+}
+
+form > input:focus {
+  /* removing the input focus blue box. Put this on the form if you like. */
+  outline: none;
+}
+
+form > button {
+  /* Just a little styling to make it pretty */
+
+  /* background: blue; */
+  border: none;
+  background-color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+}
+.nav > img {
+  width: 130px;
+}
+
+.fa-smile,
+.fa-paper-plane {
+  font-size: 23px;
+}
+
+.home {
+  width: 70%;
+  margin: auto;
+  /* display:block; */
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.icons {
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.icons > i {
+  margin: 1em;
+}
+.nav > input {
+  height: 20px;
+  border: 5px solid #f6f6f6;
+  padding: 2px;
+}
+.following {
+  width: 67.5%;
+  border: 1px solid #d1cbcb;
+  padding: 10px;
+  overflow: auto;
+  display: flex;
+  height: 70px;
+  flex-direction: row;
+  margin-top: 40px;
+}
+.following > .person > img {
+  margin: 3px;
+  width: 50px;
+}
+.following::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.following {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.person > p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 5px;
+}
+.top {
+  display: flex;
+  /* background-color: red; */
+  width: 100%;
+  align-items: center;
+  padding: 5px;
+}
+
+.top > img {
+  width: 40px;
+  height: 40px;
+  margin: 0 15px;
+}
+
+.card {
+  margin-top: 30px;
+  /* border: 2px solid #ccc; */
+}
+.comments > strong {
+  text-decoration: underline;
+}
+.comments {
+  overflow: auto;
+  height: 300px;
+}
+.comments::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.comments {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.card {
+  height: 100%;
+}
+strong {
+  font-weight: bolder;
+}
+.comments {
+  width: 100%;
+}
+.card {
+  /* background-color: blue; */
+  width: 75%;
+}
+.middle > img {
+  width: 100%;
+  object-fit: contain;
+}
+.middle {
+  width: 100%;
+  height: 100%;
+}
+
+.end {
+  padding: 0;
+}
+.card {
+  border-top: 1px solid #d1c8c8;
+  border-left: 1px solid #d1c8c8;
+  border-right: 1px solid #d1c8c8;
+  border-bottom: 1px solid #d1c8c8;
+}
+
+.end > i,
+p,
+p,
+strong {
+  padding: 10px;
+  margin: 0;
+}
+.comments {
+  text-align: start;
+}
+.login {
+  display: flex;
+  width: 100%;
+}
+.login > div > img {
+  width: 200px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form > div > img {
+  width: 51px;
+
+  height: 32px;
+}
+.form > div {
+  display: flex;
+}
+
+.login > div {
+  border: 1px solid #d1c8c8;
+}
+.login > img {
+  width: 50vh;
+}
+.login {
+  justify-content: center;
+  gap: 90px;
+}
+.login > div {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+.form {
+  margin-top: 20px;
+  display: flex;
+  gap: 5px;
+}
+.form > input {
+  padding: 7px;
+}
+.form > button {
+  margin-top: 10px;
+  background-color: #0095f6;
+  border: none;
+  color: white;
+  padding: 8px;
+}
+
+.form > input:focus {
+  /* removing the input focus blue box. Put this on the form if you like. */
+  outline: none;
+}
+.form > p {
+  text-align: center;
+}
+.form > div {
+  text-align: center;
+  display: flex;
+
+  align-items: center;
+}
+.login > div {
+  height: min-content;
+}
+
+.login {
+  align-items: center;
+}
+.user > i {
+  font-size: 70px;
+  padding: 50px;
+  background-color: #dbdbdb;
+  border-radius: 50%;
+}
+#circle {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: blue;
+}
+.user {
+  display: flex;
+  width: 60%;
+  margin: auto;
+  justify-content: space-between;
+  /* background-color:red */
+}
+
+.user > div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+hr {
+  border-top: 1px solid #d1c8c8;
+}
+.user > div div:nth-of-type(1) {
+  display: flex;
+}
+.user > div div:nth-of-type(2) {
+  display: flex;
+}
+.user {
+  padding: 40px;
+}
+
+hr {
+  height: 1px;
+  background-color: #ccc;
+  border: none;
+}
+
+
+.img > div {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+.img > div > img {
+  width: 22%;
+  height: 234px;
+}
+.plus {
+  display: none;
+  position: absolute;
+  top: 28%;
+  left: 38%;
+  background-color:white;
+  min-width: 20%;
+  padding:70px 30px;
+  box-shadow: 2px 2px 2px rgba(0,0,0);
+  border-radius: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.plus > button {
+  width: 90px;
+  background-color: #0095f6;
+  padding: 10px;
+  color: white;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+  font-weight: 800;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.plus > img {
+  width: 68px;
+}
+
+.none{
+  display: flex;
+}
+.fa-plus{
+  cursor: pointer;
+
+}
+.hide{
+   visibility: hidden;
+}
+.block{
+  display: block;
+}
+.video{
+  width: 100%;
+ display:none;
+ position:absolute
+
+}
+.show{
+  display: block;
+}

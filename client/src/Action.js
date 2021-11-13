@@ -4,3 +4,16 @@ export const data = (user) => {
     payload: user,
   };
 };
+export const detail = (user) => {
+  return {
+    type: "NOOB",
+    payload: user,
+  };
+};
+
+export const All = (user) => {
+  return {
+    type: "ALL",
+    payload: user,
+  };
+};

@@ -24,6 +24,10 @@ form > input:focus {
   /* removing the input focus blue box. Put this on the form if you like. */
   outline: none;
 }
+.nav > input:focus {
+  /* removing the input focus blue box. Put this on the form if you like. */
+  outline: none;
+}
 
 form > button {
   /* Just a little styling to make it pretty */
@@ -275,9 +279,9 @@ strong {
 }
 .user {
   display: flex;
-  width: 60%;
+
   margin: auto;
-  justify-content: space-between;
+  justify-content: center;
   /* background-color:red */
 }
 
@@ -305,8 +309,7 @@ hr {
   border: none;
 }
 
-
-.img > div {
+/* .img > div {
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -315,16 +318,16 @@ hr {
 .img > div > img {
   width: 22%;
   height: 234px;
-}
+} */
 .plus {
   display: none;
   position: absolute;
   top: 28%;
   left: 38%;
-  background-color:white;
+  background-color: white;
   min-width: 20%;
-  padding:70px 30px;
-  box-shadow: 2px 2px 2px rgba(0,0,0);
+  padding: 70px 30px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0);
   border-radius: 10px;
   flex-direction: column;
   justify-content: center;
@@ -349,25 +352,165 @@ hr {
   width: 68px;
 }
 
-.none{
+.none {
   display: flex;
 }
-.fa-plus{
+.fa-plus {
   cursor: pointer;
-
 }
-.hide{
-   visibility: hidden;
+.hide {
+  visibility: hidden;
 }
-.block{
+.block {
   display: block;
 }
-.video{
+.video {
   width: 100%;
- display:none;
- position:absolute
-
+  display: none;
+  position: absolute;
 }
-.show{
+.show {
   display: block;
+}
+.btn {
+  /* margin-top: 10px; */
+  background-color: #0095f6;
+  border: none;
+  color: white;
+  padding: 8px;
+}
+
+.form > div {
+  justify-content: center;
+}
+button {
+  cursor: pointer;
+}
+.n {
+  display: none;
+}
+.insta {
+  display: none;
+}
+.image {
+  position: absolute;
+  top: 38%;
+  left: 45%;
+  background-color: white;
+  width: 100px;
+}
+.img {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.img > div {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  column-gap: 10px;
+  row-gap: 43px;
+  width: 70%;
+  margin-bottom: 200px;
+}
+.img > div > img {
+  text-align: center;
+  width: 90%;
+  object-fit: contain;
+}
+#user-image {
+  width: 143px;
+  height: 143px;
+  margin-left: 0;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 50%;
+}
+#out {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 5px;
+  border: none;
+  background-color: #0095f6;
+  padding: 10px;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+  font-size: 700;
+  color: white;
+}
+.wrapper {
+  max-width: 200px;
+  margin: auto;
+}
+.wrapper .search-input {
+  background-color: #fff;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+  z-index: 1;
+}
+.search-input input {
+  height: 32px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0 60px 0 20px;
+  font-size: 13px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0, 0.1);
+}
+
+.autocom-box li {
+  list-style: none;
+  padding: 8px 12px;
+
+  cursor: default;
+  border-radius: 3px;
+  display: block;
+}
+.autocom-box li:hover {
+  background-color: #efefef;
+}
+.search-input.active .autocom-box {
+  padding: 10px 0px;
+  opacity: 1;
+  pointer-events: auto;
+}
+.search-input.active .autocom-box li {
+  display: block;
+}
+
+.autocom-box {
+  position: absolute;
+  top: 9%;
+  right: 43%;
+  background-color: white;
+  width: 330px;
+  border-radius: 5px;
+  overflow-y: auto;
+  height: 300px;
+  display: none;
+}
+
+.autocom-box::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.autocom-box {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.active {
+  display: block;
+}
+.fa-xmark {
+  float: right;
+  padding: 5px;
+  cursor: pointer;
+}
+.logo{
+  display: flex;
+    margin: auto;
+    padding: 15px;
 }

@@ -406,7 +406,7 @@ button {
 }
 .img > div {
   display: inline-grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
   column-gap: 10px;
   row-gap: 43px;
@@ -415,7 +415,8 @@ button {
 }
 .img > div > img {
   text-align: center;
-  width: 90%;
+  width: 100%;
+
   object-fit: contain;
 }
 #user-image {
@@ -509,8 +510,34 @@ button {
   padding: 5px;
   cursor: pointer;
 }
-.logo{
+.logo {
   display: flex;
-    margin: auto;
-    padding: 15px;
+  margin: auto;
+  padding: 15px;
+  align-items: center;
+}
+.logo > i {
+  margin-left: 10px;
+}
+#follow {
+  margin: 5px;
+  border: none;
+  background-color: #0095f6;
+  padding: 3px 15px;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+  font-size: 700;
+  color: white;
+}
+#unfollow {
+  margin: 5px;
+
+  background-color: white;
+  padding: 3px 15px;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+  font-size: 700;
+  color: black;
+  border: 1px solid #dbdbdb;
+}
+.op {
+  padding: 10px;
 }

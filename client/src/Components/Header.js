@@ -13,13 +13,29 @@ import {
   NavLink,
   useHistory,
 } from "react-router-dom";
+import {
+  collection,
+  query,
+  orderBy,
+  limit,
+  getDocs,
+  where,
+  getDoc,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
+
 import uniqid from "uniqid";
+import { db } from "../FireStore.js";
 
 const Header = () => {
+
   const user = useSelector((state) => state.detail);
   const all_users = useSelector((state) => state.users);
-
+  const [user_name, setuser_name] = useState("");
+  const [user_image, setuser_image] = useState("");
   const [all, setall] = useState([]);
+  const [count, setcount] = useState(0)
 
   let history = useHistory();
   function handleClick() {
@@ -47,13 +63,15 @@ const Header = () => {
     const btn = document.querySelector(".upload");
     btn.classList.remove("hide");
   }
+
   async function post(e) {
+    setcount(count + 1)
     const f = document.querySelector("form");
     const element1 = document.querySelector("form > img");
     const element2 = document.querySelector("form > h2");
     const element3 = document.querySelector("form > button");
     e.preventDefault();
-
+    
     const v = document.querySelector(".video");
     f.style.background = "white";
     v.classList.toggle("show");
@@ -65,7 +83,12 @@ const Header = () => {
         data: img,
         user: user,
         id: id,
+        user_name: user_name,
+        user_image: user_image,
+        number:count
+        
       });
+      update()
       if (typeof res === "object") {
         v.classList.toggle("show");
         f.classList.remove("none");
@@ -77,7 +100,21 @@ const Header = () => {
       console.log(error);
     }
   }
+  async function _f() {
+    if (!user) return;
+    const docRef = doc(db, "Users", user);
+    const docSnap = await getDoc(docRef);
+    const data = docSnap.data();
+    setuser_name(data.name);
+    setuser_image(data.url);
+    console.log("eneter");
+    setcount(data.posts)
 
+  }
+
+  useEffect(() => {
+    _f();
+  }, []);
   function handleChange(e) {
     const selected = e.target.files[0];
     const reader = new FileReader();
@@ -100,13 +137,20 @@ const Header = () => {
     });
     setall(data);
   }
-  function select(e) {
-    const input = document.querySelector("#i");
-    input.value = e.target.innerHTML;
-    const sugg = document.querySelector(".autocom-box");
-    sugg.classList.remove("active");
-  }
 
+  async function update() {
+   
+console.log(count);
+
+    const user_ref = doc(db, "Users", user);
+ 
+    // Set the "capital" field of the city 'DC'
+    await updateDoc(user_ref, {
+      posts: count
+    });
+  }
+ 
+  
   return (
     <>
       <form
@@ -183,23 +227,36 @@ const Header = () => {
               {all?.map((e) => {
                 return (
                   <div className="logo">
-                    {" "}
-                    <div
-                      id="user-image"
+                    {e.url ? (
+                      <div
+                        id="user-image"
+                        style={{
+                          backgroundImage: `url("${e.url}")  `,
+                          objectFit: "contain",
+                          width: "40px",
+                          height: "40px",
+                        }}
+                      ></div>
+                    ) : (
+                      <i class="fa-solid fa-user"></i>
+                    )}
+                    <NavLink
                       style={{
-                        backgroundImage: e.url ? `url("${e.url}")  ` : "blue",
-                        objectFit: "contain",
-                        width: "40px",
-                        height: "40px",
+                        textDecoration: "none",
+                        color: "black",
                       }}
-                    ></div>
-                    <li
-                      onClick={(e) => {
-                        select(e);
-                      }}
+                      to={`/${e.name}`}
                     >
-                      {e.name}
-                    </li>{" "}
+                      {" "}
+                      <li
+                        onClick={() => {
+                          const sugg = document.querySelector(".autocom-box");
+                          sugg.classList.remove("active");
+                        }}
+                      >
+                        {e.name}
+                      </li>
+                    </NavLink>
                   </div>
                 );
               })}
@@ -210,6 +267,9 @@ const Header = () => {
           <i
             onClick={() => {
               handleClick();
+            }}
+            style={{
+              cursor: "pointer",
             }}
             className="fa-1x fa-solid fa-house"
           ></i>

@@ -17,13 +17,12 @@ const User = () => {
   const user = useSelector((state) => state.detail);
   const [state, setstate] = useState([]);
   const [img, setimg] = useState([]);
-
+   console.log(img);
   async function fetch_user_img(user){
     const docRef = doc(db, "Users", user, "user_image", "url");
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       const obj = docSnap.data()
-      console.log("Document data:", docSnap.data());
       setimgg(obj.url)
     } else {
       // doc.data() will be undefined in this case
@@ -120,9 +119,9 @@ const User = () => {
               <h2>{state?.name}</h2>
             </div>
             <div>
-              <p className="">1 posts</p>
+              <p className="">0 posts</p>
               <p className="">0 followers</p>
-              <p className="">6 following</p>
+              <p className="">0 following</p>
             </div>
           </div>
         </div>

@@ -17,3 +17,18 @@ export const All = (user) => {
     payload: user,
   };
 };
+
+
+export const Following = (user) => {
+  return {
+    type: "FOLLOWING",
+    payload: user,
+  };
+};
+export const Posts = (user) => {
+  return {
+    type: "POSTS",
+    payload: user,
+  };
+};
+

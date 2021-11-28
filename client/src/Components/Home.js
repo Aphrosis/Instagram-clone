@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import "./style.css";
 import Person from "./Person";
@@ -10,8 +10,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
 import { detail } from "../Action";
 import { All } from "../Action";
+import {
+  collection,
+  query,
+  orderBy,
+  limit,
+  getDocs,
+  where,
+  getDoc,
+  updateDoc,
+  doc
+} from "firebase/firestore";
 
-import { collection, getDocs } from "firebase/firestore";
+import Searched_User from "./Searched_User";
 import { db } from "../FireStore.js";
 import axios from "axios";
 import {
@@ -21,24 +32,28 @@ import {
   NavLink,
   useHistory,
 } from "react-router-dom";
+import { async } from "@firebase/util";
 
 const Home = () => {
   const user = useSelector((state) => state.detail);
+  const posts = useSelector((state) => state.posts);
+  const [scroll, setscroll] = useState(0)
   const dispatch = useDispatch();
-  const [users, setusers] = useState([])
- 
-  // useEffect(() => {
-  //   if(user)
-  // }, [])
-  useEffect(() => {
-    async function fetch(){
-     const all_users = await axios.get("http://localhost:5000/all")
-     setusers(all_users)
-     dispatch(All(all_users))
+  const [users, setusers] = useState([]);
+  
+  const following = useSelector((state) => state.following);
+  // console.log(user);
 
+  useEffect(() => {
+    async function fetch() {
+      const all_users = await axios.get("http://localhost:5000/all");
+      setusers(all_users);
+      dispatch(All(all_users));
+     
     }
-    fetch()
-   }, [])
+
+    fetch();
+  }, []);
   
   async function log_out() {
     const auth = getAuth();
@@ -51,17 +66,22 @@ const Home = () => {
       });
   }
  
+//  console.log(posts);
+//  console.log(following);
+//  console.log(following);
+//  console.log(following);
+//  console.log(following);
 
-
-
-
+  
   return (
     <>
-      {/* <img className="image" src="https://img.favpng.com/9/25/24/computer-icons-instagram-logo-sticker-png-favpng-LZmXr3KPyVbr8LkxNML458QV3.jpg" alt="" /> */}
+      {/* <img className="image" src="https://img.favpng.com/9/25/24/computer-icons-instagram-logo-sticker-png-favpng-LZmXr3KPyVbr8LkxNML458QV3.jpg" alt="" />
+        */}
       <div className="">
         <Router>
           <Switch>
             <Route exact path="/user" component={User}></Route>
+            <Route exact path="/:name" component={Searched_User}></Route>
             {user ? (
               <div className="home ">
                 <button
@@ -72,19 +92,24 @@ const Home = () => {
                 >
                   SIGN OUT
                 </button>
-                <Header all_users={users}  />
+                <Header all_users={users} />
 
                 <div className="following">
-                  <Person />
-                  <Person />
-                  <Person />
-                  <Person />
+                  {following
+                    ? following.data.map((e) => {
+                        if (e.name === "") return;
+                        return (
+                          <Person key={e.name} name={e.name} url={e.url} />
+                        );
+                      })
+                    : ""}
                 </div>
                 <div className="cards">
-                  <Card />
-                  <Card />
-                  <Card />
-                  <Card />
+                  {posts?.map((e) => {
+                    if(e.url === "") return;
+                    return <Card url={e.url} user_image={e.user_image} user_name={e.user_name} />
+                  })}
+                  <h3>...Loading</h3>
                 </div>
               </div>
             ) : (

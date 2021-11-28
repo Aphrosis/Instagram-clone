@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-
+import axios from "axios";
 import uniqid from "uniqid";
 import { detail } from "../Action";
 import "./style.css";
+import { Following } from "../Action";
+import { Posts } from "../Action";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -14,6 +17,7 @@ import { db } from "../FireStore.js";
 import { useDispatch, useSelector } from "react-redux";
 const Login = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [user_name, setuser] = useState("");
@@ -21,20 +25,18 @@ const Login = () => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-      
         const uid = user.uid;
-        const email = user.email
+        const email = user.email;
         const str = email.split("@")[0];
         dispatch(detail(str));
-      
+        _fetch(str);
       } else {
         // User is signed out
         // ...
       }
     });
-    
-  }, []);
-  
+  }, [user]);
+
   async function set(email, name) {
     const id1 = uniqid();
     const id2 = uniqid();
@@ -42,6 +44,7 @@ const Login = () => {
     await setDoc(doc(db, "Users", email), {
       name: name,
       url: "",
+      posts: 0,
     });
     await setDoc(doc(db, "Users", email, "posts", id1), {
       url: "",
@@ -100,13 +103,26 @@ const Login = () => {
         const email = user.email;
         const str = email.split("@")[0];
         dispatch(detail(str));
+        _fetch(str);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
   }
-
+  async function _fetch(user) {
+    const following = await axios.post("http://localhost:5000/follow", {
+      data: user,
+    });
+  
+    const data = await axios.post("http://localhost:5000/posts", {
+      data: following.data,
+    });
+    if(!following) return
+    dispatch(Following(following));
+    dispatch(Posts(data.data));
+    
+  }
   return (
     <>
       <div className="login">

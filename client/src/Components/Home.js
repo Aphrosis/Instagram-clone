@@ -109,7 +109,7 @@ const Home = () => {
                     if(e.url === "") return;
                     return <Card url={e.url} user_image={e.user_image} user_name={e.user_name} />
                   })}
-                  <h3>...Loading</h3>
+                  <h3>.....Loading</h3>
                 </div>
               </div>
             ) : (
